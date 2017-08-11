@@ -3,10 +3,20 @@ import React from 'react';
 import Pet from './Pet';
 
 class PetBrowser extends React.Component {
+  allPetsAreEqual = () => {
+    return this.props.pets.map((pet)=>{
+      return <Pet pet={pet} isAdopted={this.isAdopted(pet)} onAdoptPet={this.props.onAdoptPet}/>
+    })
+  }
+
+  isAdopted = (checkPet) => {
+    return this.props.adoptedPets.includes(checkPet.id)
+  }
+
   render() {
     return (
       <div className="ui cards">
-        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
+        {this.allPetsAreEqual()}
       </div>
     );
   }
